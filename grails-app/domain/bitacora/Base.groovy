@@ -49,6 +49,6 @@ class Base {
 
     def beforeInsert = {
 //        problema = problema.toUpperCase()
-        clave = clave.toUpperCase()
+        clave = clave.toLowerCase()
     }
 }
