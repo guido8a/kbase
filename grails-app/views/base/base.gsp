@@ -314,12 +314,13 @@
         var $form = $("#frmProblema");
 //        var texto = CKEDITOR.instances.editor1.getData();
         var texto = CKEDITOR.instances.algoritmo.getData();
+        var base_id = '${base?.id}';
         if($form.valid()){
             $.ajax({
                 type: 'POST',
                 url: "${createLink(controller: 'base', action: 'guardarProblema_ajax')}",
                 data:  {
-                    id: '${base?.id}',
+                    id: base_id,
                     algoritmo: texto,
                     tema: $("#temaId").val(),
                     problema: $("#prbl").val(),
@@ -329,8 +330,12 @@
                     observacion: $("#obsr").val()
                 },
                 success: function (msg) {
-                    if(msg == 'ok'){
+                    var parte = msg.split("_");
+                    if(parte[0] == 'ok'){
                         log("Problema guardado correctamente","success")
+                        setTimeout(function () {
+                            reCargar(parte[1]);
+                        }, 500);
                     }else{
                         log("Error al guardar el problema","error")
                     }
@@ -338,6 +343,13 @@
             });
         }
     });
+
+    function reCargar(id) {
+//        console.log('recargar', id)
+        var url = "${createLink(controller: 'base', action: 'base')}" + "/" + id
+//        console.log('link', url)
+        location.href = url
+    }
 
 
 
@@ -424,6 +436,7 @@
     function reset() {
         $("#files").find(".fileContainer").remove()
     }
+
     $("#file").change(function () {
         reset();
         archivos = $(this)[0].files;

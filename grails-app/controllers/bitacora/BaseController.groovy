@@ -116,11 +116,12 @@ class BaseController extends seguridad.Shield {
     }
 
     def guardarProblema_ajax () {
-//        println("params guardar problema params: " + params)
+//        println("guardarProblema params: " + params)
 
         def tema = Tema.get(params.tema)
         def usuario = Persona.get(session.usuario.id)
         def baseInstance
+        def edita = params.id? params.id : 0
 
         if(params.id){
             baseInstance = Base.get(params.id)
@@ -133,14 +134,28 @@ class BaseController extends seguridad.Shield {
         baseInstance.properties = params
         baseInstance.tema = tema
 
+//        println "edita: $edita"
         try{
+            println "...1"
             baseInstance.save(flush: true)
-            println("problema" + baseInstance.errors)
-            render "ok"
-        }catch (e){
+//            println "guardado ----- "
+            baseInstance.refresh()
+            println "....id: ${baseInstance.id}"
+            render "ok_${baseInstance.id}"
+
+
+/*
+            if(!edita) {
+                params.id = baseInstance.id
+                redirect (action: "base", params: params)
+            }
+*/
+
+        } catch (e) {
             println("error al guardar el problema " + baseInstance.errors)
             render "no"
         }
+
     }
 
 
