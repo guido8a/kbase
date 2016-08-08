@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-
 <html>
 <head>
     <meta name="layout" content="main">
@@ -139,7 +138,9 @@
                             <div class="col-md-12">
                                 <span class="col-md-2 label label-primary text-info mediano">Tema</span>
                                 <div class="col-md-8">
-                                    <g:select name="tema" id="temaId" from="${bitacora.Tema.list()}" optionKey="id" value="${base?.tema}" optionValue="nombre" class="form-control"/>
+                                    <g:select name="tema" id="temaId" from="${bitacora.Tema.list()}" optionKey="id"
+                                              value="${base?.tema?.id}" optionValue="nombre" class="form-control"
+                                              style="color: #3d658a"/>
                                 </div>
                             </div>
                         </div>
