@@ -24,9 +24,11 @@ class Shield {
 
         } else {
             if (!session.usuario || !session.perfil) {
-                    redirect(controller: 'login', action: 'login')
-                    session.finalize()
-                    return false
+                flash.message = "Usted ha superado el tiempo de inactividad máximo de la sesión"
+                render "<script type='text/javascript'> window.location.href = '${createLink(controller:'login', action:'login')}'; </script>"
+//                redirect(controller: 'login', action: 'login')
+                session.finalize()
+                return false
             } else {
                 def now = new Date()
                 def band = true

@@ -396,6 +396,7 @@
             }
         }
     });
+
     $(".form-control").keydown(function (ev) {
         if (ev.keyCode == 13) {
             submitForm();

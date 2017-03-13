@@ -20,7 +20,7 @@ environments {
         dataSource {
             dbCreate = "update"
 //            url = "jdbc:postgresql://10.0.0.10:5432/kbase"
-            url = "jdbc:postgresql://10.0.0.10:5432/kbase_nueva"
+            url = "jdbc:postgresql://10.0.0.9:5432/kbase_nueva"
             username = "postgres"
             password = "postgres"
         }
@@ -28,7 +28,7 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:postgresql://10.0.0.10:5432/kbase_nueva"
+            url = "jdbc:postgresql://10.0.0.9:5432/kbase_nueva"
             username = "postgres"
             password = "postgres"
         }
