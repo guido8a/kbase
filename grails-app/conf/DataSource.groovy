@@ -38,7 +38,7 @@ environments {
             dbCreate = "update"
             url = "jdbc:postgresql://127.0.0.1:5432/kbase"
             username = "postgres"
-            password = "postgres"
+            password = "steinsgate"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
