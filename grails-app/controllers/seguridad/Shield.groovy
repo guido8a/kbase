@@ -8,8 +8,8 @@ class Shield {
      * Verifica si el usuario actual tiene los permisos para ejecutar una acción
      */
     def auth() {
-        println "acción: " + actionName + " controlador: " + controllerName + "  "
-        println "shield sesión: " + session.usuario
+//        println "acción: " + actionName + " controlador: " + controllerName + " params: $params"
+//        println "shield sesión: " + session.usuario
         session.an = actionName
         session.cn = controllerName
         session.pr = params
@@ -24,7 +24,9 @@ class Shield {
 
         } else {
             if (!session.usuario || !session.perfil) {
-                flash.message = "Usted ha superado el tiempo de inactividad máximo de la sesión"
+                if(controllerName != "inicio" && actionName != "index") {
+                    flash.message = "Usted ha superado el tiempo de inactividad máximo de la sesión"
+                }
                 render "<script type='text/javascript'> window.location.href = '${createLink(controller:'login', action:'login')}'; </script>"
 //                redirect(controller: 'login', action: 'login')
                 session.finalize()
